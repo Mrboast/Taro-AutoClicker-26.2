@@ -9,10 +9,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - mc: "1.21.11"
-            dir: "mc-1.21.11"
-            gradle: "9.2.0"
-            java: 21
           - mc: "26.2"
             dir: "mc-26.2"
             gradle: "9.5.1"
@@ -36,4 +32,3 @@ jobs:
         with:
           name: taro-autoclicker-${{ matrix.mc }}
           path: ${{ matrix.dir }}/build/libs
-
