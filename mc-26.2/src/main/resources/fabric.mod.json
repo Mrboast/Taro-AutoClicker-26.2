@@ -6,6 +6,7 @@
   "description": "Taro Autoclicker Oficial para Minecraft 26.2. Autoclick al aire con intervalo configurable de 0.5 s a 15 s.",
   "authors": ["Taro"],
   "license": "MIT",
+    "icon": "assets/airclicker/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": ["com.airclicker.AirClickerMod"]
