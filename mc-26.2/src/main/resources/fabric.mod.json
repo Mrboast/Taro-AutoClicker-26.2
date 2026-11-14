@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "airclicker",
+  "version": "${version}",
+  "name": "Taro Autoclicker Oficial 26.2",
+  "description": "Taro Autoclicker Oficial para Minecraft 26.2. Autoclick al aire con intervalo configurable de 0.5 s a 15 s.",
+  "authors": ["Taro"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.airclicker.AirClickerMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "~26.2",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
