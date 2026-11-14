@@ -38,7 +38,7 @@ public class AirClickerMod implements ClientModInitializer {
                 (graphics, deltaTracker) -> {
                     if (!running) return;
                     Minecraft mc = Minecraft.getInstance();
-                    if (mc.options.hideGui) return;
+                    if (mc.gui.hud.isHidden()) return;
                     long left = Math.max(0, nextClick - System.currentTimeMillis());
                     String txt = "Taro Autoclicker Oficial 26.2 ● " + ClickerConfig.format(ClickerConfig.intervalSeconds)
                             + "  (próximo en " + String.format(java.util.Locale.ROOT, "%.1f", left / 1000.0) + " s)";
@@ -72,7 +72,7 @@ public class AirClickerMod implements ClientModInitializer {
             }
         }
         while (menuKey.consumeClick()) {
-            if (mc.screen == null) mc.setScreen(new ClickerScreen());
+            if (mc.gui.screen() == null) mc.gui.setScreen(new ClickerScreen());
         }
 
         if (!running) return;
@@ -82,7 +82,7 @@ public class AirClickerMod implements ClientModInitializer {
         }
         long now = System.currentTimeMillis();
         // Con un menú abierto no se hace clic y se reinicia la cuenta.
-        if (mc.screen != null) {
+        if (mc.gui.screen() != null) {
             nextClick = now + (long) (ClickerConfig.intervalSeconds * 1000);
             return;
         }
