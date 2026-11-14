@@ -1,1 +1,39 @@
+name: Build mod
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - mc: "1.21.11"
+            dir: "mc-1.21.11"
+            gradle: "9.2.0"
+            java: 21
+          - mc: "26.2"
+            dir: "mc-26.2"
+            gradle: "9.5.1"
+            java: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: ${{ matrix.gradle }}
+      - name: Compilar
+        run: gradle build
+        working-directory: ${{ matrix.dir }}
+      - name: Quitar sources
+        run: rm -f build/libs/*-sources.jar
+        working-directory: ${{ matrix.dir }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: taro-autoclicker-${{ matrix.mc }}
+          path: ${{ matrix.dir }}/build/libs
 
